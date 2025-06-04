@@ -14,10 +14,9 @@ class DisplayInfor extends React.Component {
     };
     render() {
         const { listUsers } = this.props;
-        console.log(listUsers);
         return (
             <div className="display-infor-container">
-                <img src={logo} alt="" />
+                {/* <img src={logo} alt="" /> */}
                 <div>
                     <span
                         onClick={() => {
@@ -31,14 +30,28 @@ class DisplayInfor extends React.Component {
                 </div>
                 {this.state.isShowListUser && (
                     <div>
-                        {listUsers.map((user) => {
+                        {listUsers.map((user, index) => {
                             return (
                                 <div
                                     key={user.id}
                                     className={+user.age > 27 ? "green" : "red"}
                                 >
-                                    <p>My name's {user.name}</p>
-                                    <p>My age's {user.age}</p>
+                                    <div>
+                                        <p>My name's {user.name}</p>
+                                        <p>My age's {user.age}</p>
+                                    </div>
+                                    <div>
+                                        <button
+                                            onClick={() =>
+                                                this.props.handleDeleteUser(
+                                                    user.id
+                                                )
+                                            }
+                                        >
+                                            Delete{" "}
+                                        </button>
+                                    </div>
+
                                     <hr />
                                 </div>
                             );
